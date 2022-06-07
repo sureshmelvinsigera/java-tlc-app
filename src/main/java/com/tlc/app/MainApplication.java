@@ -3,6 +3,7 @@ package com.tlc.app;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import com.tlc.app.model.ReadTripRecordModel;
+import com.tlc.app.ui.SingleTripRecordViewUI;
 import com.tlc.app.util.Validate;
 import javafx.application.Application;
 
@@ -10,11 +11,10 @@ import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -27,9 +27,27 @@ public class MainApplication extends Application {
     public final static ObservableList<ReadTripRecordModel> readTripRecordModelObservableList = FXCollections.observableArrayList();
     public static TableView<ReadTripRecordModel> tripRecordModelTableView = new TableView<>();
 
+    public VBox form(){
+        VBox vBox = new VBox();
+
+        vBox.setSpacing(8);
+        vBox.setPadding(new Insets(10,10,10,10));
+        vBox.getChildren().addAll(
+                new Label("Your Name"),
+                new TextField(),
+                new Label("Your Username"),
+                new TextField(),
+                new Label("Your Password"),
+                new PasswordField(),
+                new Label("Confirm Password"),
+                new PasswordField(),
+                new Button("REGISTER"));
+
+        return vBox;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-
         primaryStage.setTitle("TLC UP 1.1");
 
         BorderPane root = new BorderPane();
@@ -38,14 +56,11 @@ public class MainApplication extends Application {
         MenuBar menubar = new MenuBar();
         root.setTop(menubar);
 
-        //File menu
         Menu fileMenu = new Menu("File");
         MenuItem openCSVFile = new MenuItem("Open Project       Ctrl+Shift+o");
         MenuItem closeApplication = new MenuItem("Exit");
         closeApplication.setOnAction(e -> Platform.exit());
         fileMenu.getItems().addAll(openCSVFile, new SeparatorMenuItem(), closeApplication);
-
-        //View Menu
         Menu viewMenu = new Menu("View");
         CheckMenuItem check1 = new CheckMenuItem("Editor");
         check1.setSelected(true);
@@ -62,12 +77,12 @@ public class MainApplication extends Application {
         viewMenu.getItems().add(toolbar);
         menubar.getMenus().addAll(fileMenu, viewMenu);
 
-        VBox vBoxMiddleCenter = new VBox(tripRecordModelTableView);
-        vBoxMiddleCenter.setStyle("-fx-background-color: yellow;");
-        VBox middle = new VBox();
-        middle.setStyle("-fx-background-color: yellow;");
-        middle.getChildren().add(vBoxMiddleCenter);
-        root.setCenter(middle);
+        VBox applicationMiddle = new VBox();
+        applicationMiddle.setStyle("-fx-background-color: yellow;");
+        applicationMiddle.getChildren().add(SingleTripRecordViewUI.generateUI());
+        root.setCenter(tripRecordModelTableView);
+
+        root.setBottom(applicationMiddle);
 
         openCSVFile.setOnAction(actionEvent -> {
             System.out.println("Clicked");
@@ -98,10 +113,10 @@ public class MainApplication extends Application {
                     if (Bindings.isEmpty(tripRecordModelTableView.getItems()).get()) {
 
                     }
-                    tripRecordModelTableView.setRowFactory(tv -> new TableRow<ReadTripRecordModel>() {
+                    tripRecordModelTableView.setRowFactory(tv -> new TableRow<>() {
                         @Override
                         public void updateItem(ReadTripRecordModel tripRecord, boolean empty) {
-                            super.updateItem(tripRecord, empty) ;
+                            super.updateItem(tripRecord, empty);
                             if (tripRecord == null) {
                                 setStyle("-fx-background-color: #701212FF;");
                             } else if (Validate.validateRow(tripRecord)) {
@@ -135,11 +150,8 @@ public class MainApplication extends Application {
         primaryStage.show();
     }
 
+
     public static void main(String[] args) {
         launch();
-    }
-
-    public void hello() {
-        System.out.println("Hello");
     }
 }
