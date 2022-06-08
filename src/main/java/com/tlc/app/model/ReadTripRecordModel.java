@@ -1,27 +1,13 @@
 package com.tlc.app.model;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvValidationException;
 import com.tlc.app.MainApplication;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.css.PseudoClass;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ReadTripRecordModel {
@@ -41,8 +27,6 @@ public class ReadTripRecordModel {
     public SimpleStringProperty driver;
     public SimpleStringProperty timeDispatched;
     public SimpleStringProperty timeVehicleArrived;
-
-    private static final TableView tableView = new TableView();
 
     static TableColumn idColumn = new TableColumn("ID");
     static TableColumn dispatchingBaseNumberColumn = new TableColumn("Dispatching Base Number");
@@ -99,9 +83,6 @@ public class ReadTripRecordModel {
         this.driver = new SimpleStringProperty(driver);
         this.timeDispatched = new SimpleStringProperty(timeDispatched);
         this.timeVehicleArrived = new SimpleStringProperty(timeVehicleArrived);
-
-
-
     }
 
     public int getColumnId() {
