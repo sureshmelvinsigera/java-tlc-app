@@ -27,25 +27,6 @@ public class MainApplication extends Application {
     public final static ObservableList<ReadTripRecordModel> readTripRecordModelObservableList = FXCollections.observableArrayList();
     public static TableView<ReadTripRecordModel> tripRecordModelTableView = new TableView<>();
 
-    public VBox form(){
-        VBox vBox = new VBox();
-
-        vBox.setSpacing(8);
-        vBox.setPadding(new Insets(10,10,10,10));
-        vBox.getChildren().addAll(
-                new Label("Your Name"),
-                new TextField(),
-                new Label("Your Username"),
-                new TextField(),
-                new Label("Your Password"),
-                new PasswordField(),
-                new Label("Confirm Password"),
-                new PasswordField(),
-                new Button("REGISTER"));
-
-        return vBox;
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("TLC UP 1.1");
@@ -133,7 +114,7 @@ public class MainApplication extends Application {
                     csvFileLoadingErrorAlertBox.setContentText("""
                             File """ + csvFile.getName() + """
                              is missing one or more columns.
-                            
+                                                        
                             Please download Trip Record CSV Spec(csv) for correct formatting.
                             https://www1.nyc.gov/assets/tlc/downloads/xls/csv_spec_November2018-FINAL.XLS""");
 
@@ -149,7 +130,6 @@ public class MainApplication extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch();
