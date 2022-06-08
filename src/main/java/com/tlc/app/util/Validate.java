@@ -1,7 +1,6 @@
 package com.tlc.app.util;
 
 import com.tlc.app.model.ReadTripRecordModel;
-import javafx.css.PseudoClass;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,7 +17,7 @@ public class Validate {
         try {
             Date startDateAndTime = simpleDateFormat.parse(tripRecord.getTimePickedUp());
             Date endDateAndTime = simpleDateFormat.parse(tripRecord.getTimeCompleted());
-            isValid =  startDateAndTime.equals(endDateAndTime) || !Objects.equals(tripRecord.getDispatchingBaseNumber(),
+            isValid = startDateAndTime.equals(endDateAndTime) || !Objects.equals(tripRecord.getDispatchingBaseNumber(),
                     tripRecord.getAffiliatedBaseNumber()) || tripRecord.getPickup().isEmpty() ||
                     tripRecord.getDestination().isEmpty() || tripRecord.getTimeVehicleArrived().isEmpty() ||
                     tripRecord.getPickupLatitude().isEmpty() || tripRecord.getPickupLongitude().isEmpty() ||

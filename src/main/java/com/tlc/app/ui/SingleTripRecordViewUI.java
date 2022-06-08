@@ -1,7 +1,5 @@
 package com.tlc.app.ui;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -19,11 +17,8 @@ public class SingleTripRecordViewUI {
 
         VBox.setVgrow(gp, Priority.ALWAYS);
 
-        Label lblTitle = new Label("Support Ticket");
-
         Label dispatchingBaseNumberLabel = new Label("Dispatching Base Number:");
         TextField dispatchingBaseNumberTextField = new TextField();
-
 
         Label timePickedUpLabel = new Label("Time Picked Up:");
         TextField timePickedTextField = new TextField();
@@ -67,26 +62,6 @@ public class SingleTripRecordViewUI {
         Label timeVehicleArrivedLabel = new Label("Time Vehicle Arrived:");
         TextField timeVehicleArrivedTextField = new TextField();
 
-
-        Label lblPriority = new Label("Priority");
-        ObservableList<String> priorities =
-                FXCollections.observableArrayList("Medium", "High", "Low");
-        ComboBox<String> cbPriority = new ComboBox<>(priorities);
-
-        Label lblSeverity = new Label("Severity");
-        ObservableList<String> severities = FXCollections.observableArrayList("Blocker", "Workaround", "N/A");
-        ComboBox<String> cbSeverity = new ComboBox<>(severities);
-
-        Label lblCategory = new Label("Category");
-        ObservableList<String> categories = FXCollections.observableArrayList("Bug", "Feature");
-        ComboBox<String> cbCategory = new ComboBox<>(categories);
-
-        Label lblProblem = new Label("Problem");
-        TextField tfProblem = new TextField();
-
-        Label lblDescription = new Label("Description");
-        TextArea taDescription = new TextArea();
-
         gp.addRow(0,dispatchingBaseNumberLabel, dispatchingBaseNumberTextField, timePickedUpLabel, timePickedTextField);
         gp.addRow(1, pickupTextLabel, pickupTextField, destinationLabel, destinationTextField);
         gp.addRow(2, timeCompletedLabel, timeCompletedTextField, affiliatedBaseNumberLabel, affiliatedBaseNumberTextField);
@@ -103,13 +78,11 @@ public class SingleTripRecordViewUI {
 
         Button saveButton = new Button("Update");
         Button cancelButton = new Button("Cancel");
-        Button deleteButton = new Button("Delete");
 
         buttonBar.setButtonData(cancelButton, ButtonBar.ButtonData.CANCEL_CLOSE);
         buttonBar.setButtonData(saveButton, ButtonBar.ButtonData.OK_DONE);
 
         buttonBar.getButtons().addAll(saveButton, cancelButton);
-
         vbox.getChildren().addAll(gp, sep, buttonBar);
         return vbox;
     }
