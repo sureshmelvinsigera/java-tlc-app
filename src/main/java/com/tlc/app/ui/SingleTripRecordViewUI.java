@@ -87,71 +87,26 @@ public class SingleTripRecordViewUI {
         Label lblDescription = new Label("Description");
         TextArea taDescription = new TextArea();
 
-//        gp.add(lblTitle, 1, 0);  // empty item at 0,0
-
-        gp.add(dispatchingBaseNumberLabel, 1, 1);
-        gp.add(dispatchingBaseNumberTextField, 0, 2);
-
-        gp.add(timePickedUpLabel, 1, 2);
-        gp.add(timePickedTextField, 0, 3);
-
-//        gp.add(pickupTextLabel, 0, 2);
-//        gp.add(pickupTextField, 1, 2);
-//
-//        gp.add(destinationLabel, 0, 3);
-//        gp.add(destinationTextField, 1, 3);
-//
-//        gp.add(timeCompletedLabel, 0, 4);
-//        gp.add(timeCompletedTextField, 1, 4);
-//
-//        gp.add(affiliatedBaseNumberLabel, 0, 5);
-//        gp.add(affiliatedBaseNumberTextField, 1, 5);
-//
-//        gp.add(pickupLatitudeLabel, 0, 6);
-//        gp.add(pickupLatitudeTextField, 1, 6);
-//
-//        gp.add(pickupLongitudeLabel, 0, 7);
-//        gp.add(pickupLongitudeTextField, 1, 7);
-//
-//        gp.add(destinationLatitudeLabel, 0, 8);
-//        gp.add(destinationLatitudeTextField, 1, 8);
-//
-//        gp.add(destinationLongitudeLabel, 0, 9);
-//        gp.add(destinationLongitudeTextField, 1, 9);
-//
-//        gp.add(TLCDriverLicenseNumberLabel, 0, 10);
-//        gp.add(TLCDriverLicenseNumberTextField, 1, 10);
-//
-//        gp.add(vehiclePlateNumberLabel, 0, 11);
-//        gp.add(vehiclePlateNumberTextField, 1, 11);
-//
-//        gp.add(driverLabel, 0, 12);
-//        gp.add(driverTextField, 1, 12);
-//
-//        gp.add(timeDispatchedLabel, 0, 13);
-//        gp.add(timeDispatchedTextField, 1, 13);
-//
-//        gp.add(timeVehicleArrivedLabel, 0, 14);
-//        gp.add(timeVehicleArrivedTextField, 1, 14);
-
-//        gp.add(pickupLongitudeLabel, 0, 4);
-//        gp.add(pickupLongitudeLabel, 1, 4);
-
-//        GridPane.setColumnSpan(lblTitle, 5);
-//        GridPane.setColumnSpan(dispatchingBaseNumberTextField, 3);
-//        GridPane.setColumnSpan(tfProblem, 5);
-//        GridPane.setColumnSpan(taDescription, 5);
+        gp.addRow(0,dispatchingBaseNumberLabel, dispatchingBaseNumberTextField, timePickedUpLabel, timePickedTextField);
+        gp.addRow(1, pickupTextLabel, pickupTextField, destinationLabel, destinationTextField);
+        gp.addRow(2, timeCompletedLabel, timeCompletedTextField, affiliatedBaseNumberLabel, affiliatedBaseNumberTextField);
+        gp.addRow(3, pickupLatitudeLabel, pickupLatitudeTextField, pickupLongitudeLabel, pickupLongitudeTextField);
+        gp.addRow(4, destinationLatitudeLabel, destinationLatitudeTextField, destinationLongitudeLabel, destinationLongitudeTextField);
+        gp.addRow(5, TLCDriverLicenseNumberLabel, TLCDriverLicenseNumberTextField, vehiclePlateNumberLabel, vehiclePlateNumberTextField);
+        gp.addRow(6, driverLabel, driverTextField, timeDispatchedLabel, timeDispatchedTextField);
+        gp.addRow(7, timeVehicleArrivedLabel, timeVehicleArrivedTextField);
 
         Separator sep = new Separator(); // hr
 
         ButtonBar buttonBar = new ButtonBar();
         buttonBar.setPadding(new Insets(10));
 
-        Button saveButton = new Button("Save");
+        Button saveButton = new Button("Update");
         Button cancelButton = new Button("Cancel");
+        Button deleteButton = new Button("Delete");
 
-        buttonBar.setButtonData(saveButton, ButtonBar.ButtonData.OK_DONE);
         buttonBar.setButtonData(cancelButton, ButtonBar.ButtonData.CANCEL_CLOSE);
+        buttonBar.setButtonData(saveButton, ButtonBar.ButtonData.OK_DONE);
 
         buttonBar.getButtons().addAll(saveButton, cancelButton);
 

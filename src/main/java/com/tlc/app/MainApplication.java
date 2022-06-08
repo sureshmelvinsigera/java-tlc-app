@@ -78,7 +78,7 @@ public class MainApplication extends Application {
         menubar.getMenus().addAll(fileMenu, viewMenu);
 
         VBox applicationMiddle = new VBox();
-        applicationMiddle.setStyle("-fx-background-color: yellow;");
+        applicationMiddle.setStyle("-fx-background-color: #e7e8e8;");
         applicationMiddle.getChildren().add(SingleTripRecordViewUI.generateUI());
         root.setCenter(tripRecordModelTableView);
 
@@ -118,11 +118,11 @@ public class MainApplication extends Application {
                         public void updateItem(ReadTripRecordModel tripRecord, boolean empty) {
                             super.updateItem(tripRecord, empty);
                             if (tripRecord == null) {
-                                setStyle("-fx-background-color: #701212FF;");
+                                setStyle("-fx-background-color: #e5c9c8;");
                             } else if (Validate.validateRow(tripRecord)) {
-                                setStyle("-fx-background-color: #FF0000FF;");
+                                setStyle("-fx-background-color: #e5c9c8;");
                             } else {
-                                setStyle("-fx-background-color: #00D0F6FF;");
+                                setStyle("-fx-background-color: #e3e7d1;");
                             }
                         }
                     });

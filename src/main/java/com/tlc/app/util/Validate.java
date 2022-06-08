@@ -20,7 +20,7 @@ public class Validate {
             Date endDateAndTime = simpleDateFormat.parse(tripRecord.getTimeCompleted());
             isValid =  startDateAndTime.equals(endDateAndTime) || !Objects.equals(tripRecord.getDispatchingBaseNumber(),
                     tripRecord.getAffiliatedBaseNumber()) || tripRecord.getPickup().isEmpty() ||
-                    tripRecord.getDestination().isEmpty() ||
+                    tripRecord.getDestination().isEmpty() || tripRecord.getTimeVehicleArrived().isEmpty() ||
                     tripRecord.getPickupLatitude().isEmpty() || tripRecord.getPickupLongitude().isEmpty() ||
                     tripRecord.getDestinationLatitude().isEmpty() || tripRecord.getDestinationLongitude().isEmpty() ||
                     tripRecord.getTLCDriverLicenseNumber().isEmpty() || tripRecord.getDriver().isEmpty();
