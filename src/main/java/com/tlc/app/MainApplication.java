@@ -8,7 +8,6 @@ import com.tlc.app.util.Validate;
 import javafx.application.Application;
 
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
