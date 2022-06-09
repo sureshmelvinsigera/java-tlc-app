@@ -13,6 +13,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
@@ -61,7 +63,6 @@ public class MainApplication extends Application {
         applicationMiddle.setStyle("-fx-background-color: #e7e8e8;");
         applicationMiddle.getChildren().add(SingleTripRecordViewUI.generateUI());
         root.setCenter(tripRecordModelTableView);
-
         root.setBottom(applicationMiddle);
 
         openCSVFile.setOnAction(actionEvent -> {
@@ -90,9 +91,6 @@ public class MainApplication extends Application {
 
                     }
                     ReadTripRecordModel.createColumnsWithLoadData(readTripRecordModelObservableList, primaryStage);
-                    if (Bindings.isEmpty(tripRecordModelTableView.getItems()).get()) {
-
-                    }
                     tripRecordModelTableView.setRowFactory(tv -> new TableRow<>() {
                         @Override
                         public void updateItem(ReadTripRecordModel tripRecord, boolean empty) {
@@ -106,6 +104,13 @@ public class MainApplication extends Application {
                             }
                         }
                     });
+                    tripRecordModelTableView.setOnMouseClicked((MouseEvent event) -> {
+                        if (event.getButton().equals(MouseButton.PRIMARY)
+                                && event.getClickCount() == 1) {
+                            SingleTripRecordViewUI.setData(tripRecordModelTableView.getSelectionModel().getSelectedItem());
+                            System.out.println(tripRecordModelTableView.getSelectionModel().getSelectedItem().toString());
+                        }
+                    });
                 } else {
                     Alert csvFileLoadingErrorAlertBox = new Alert(Alert.AlertType.ERROR);
                     csvFileLoadingErrorAlertBox.setTitle("Error Reading Trip Records");
@@ -116,9 +121,7 @@ public class MainApplication extends Application {
                                                         
                             Please download Trip Record CSV Spec(csv) for correct formatting.
                             https://www1.nyc.gov/assets/tlc/downloads/xls/csv_spec_November2018-FINAL.XLS""");
-
                     csvFileLoadingErrorAlertBox.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-
                     csvFileLoadingErrorAlertBox.show();
                 }
             } catch (CsvValidationException | IOException e) {
